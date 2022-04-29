@@ -97,10 +97,20 @@ $(function () {
         if (preventDblClick()) return;
 
         const that = $(this);
-        that.toggleHtml(generateText, spinnerHtml);
 
-        generate(function () {
+        function toggle() {
             that.toggleHtml(generateText, spinnerHtml);
+            that.toggleDisabled();
+            that.parent().parent().parent().find("#beneficiary").toggleDisabled();
+            that.parent().parent().parent().find("#date-from").toggleDisabled();
+            that.parent().parent().parent().find("#date-to").toggleDisabled();
+            that.parent().parent().parent().find("#count").toggleDisabled();
+            that.parent().parent().parent().find("#loop").toggleDisabled();
+        }
+
+        toggle();
+        generate(function () {
+            toggle();
             enableClick();
         });
     });
@@ -123,6 +133,10 @@ $(function () {
             generateBtnSelector.toggleHtml(generateText, spinnerHtml);
             generateBtnSelector.toggleDisabled();
             loopLabelSelector.toggleTextStartsWith("Loop is off", loopingText);
+            that.parent().parent().find("#beneficiary").toggleDisabled();
+            that.parent().parent().find("#date-from").toggleDisabled();
+            that.parent().parent().find("#date-to").toggleDisabled();
+            that.parent().parent().find("#count").toggleDisabled();
         }
 
         if (isStop) {

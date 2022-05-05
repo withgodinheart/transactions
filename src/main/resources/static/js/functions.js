@@ -23,14 +23,14 @@ function generate(onComplete) {
 /**
  * Ajax request
  */
-function xhrRequest(url, data, onSuccess) {
+function xhrRequest(url, data, onSuccess, onAlways) {
     // аякс запрос
     $.ajax({
         type: 'post',
         url: url,
-        data: data,
+        data: JSON.stringify(data),
         beforeSend: function (xhr) {
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+            xhr.setRequestHeader("Content-type", "application/json;charset=utf-8")
         },
         success: function (response) {
             if (typeof onSuccess == 'function')
@@ -38,6 +38,8 @@ function xhrRequest(url, data, onSuccess) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
         }
-    }).always(function (response) {
+    }).always(function () {
+        if (typeof onAlways == 'function')
+            onAlways();
     });
 }

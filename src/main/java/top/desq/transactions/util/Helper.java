@@ -2,7 +2,7 @@ package top.desq.transactions.util;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import top.desq.transactions.model.dto.InfoResponse;
+import top.desq.transactions.dto.InfoResponse;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;

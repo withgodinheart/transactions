@@ -1,4 +1,4 @@
-package top.desq.transactions.model.dto;
+package top.desq.transactions.dto;
 
 import lombok.Builder;
 import lombok.Data;

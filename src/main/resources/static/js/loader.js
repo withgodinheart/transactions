@@ -91,12 +91,28 @@ $(function () {
     }
 
     /**
+     * Get form data
+     * @returns {{beneficiary: (*|string|jQuery), dateTo: (*|string|jQuery), count: (*|string|jQuery), dateFrom: (*|string|jQuery)}}
+     */
+    function getFormData() {
+        // $("#add-form").serialize();
+        const form = $("#add-form");
+        return {
+            beneficiary: form.find("#beneficiary").val(),
+            dateFrom: form.find("#date-from").val(),
+            dateTo: form.find("#date-to").val(),
+            count: form.find("#count").val(),
+        };
+    }
+
+    /**
      * Generate btn
      */
     $("#generate-btn").on("click", function () {
         if (preventDblClick()) return;
 
         const that = $(this);
+        const data = getFormData(); //$("#add-form").serialize();
 
         function toggle() {
             that.toggleHtml(generateText, spinnerHtml);
@@ -109,10 +125,15 @@ $(function () {
         }
 
         toggle();
-        generate(function () {
+        xhrRequest("/api/add", data, null, function () {
             toggle();
             enableClick();
         });
+
+        // generate(function () {
+        //     toggle();
+        //     enableClick();
+        // });
     });
 
     /**
@@ -122,6 +143,7 @@ $(function () {
         if (preventDblClick()) return;
 
         const that = $(this);
+        const data = getFormData(); //$("#add-form").serialize();
         const loopLabelSelector = that.parent().find("#loop-label");
         const generateBtnSelector = that.parent().parent().find("#generate-btn");
         let isStop = that.attr("is-looping") === 'true';
@@ -146,10 +168,14 @@ $(function () {
         } else {
             toggle();
             timerId = setInterval(function () {
-                generate(function () {
+                xhrRequest("/api/add", data, null, function () {
                     if (that.attr("is-looping") === 'true')
                         loopLabelSelector.text(loopingText + " (" + ++count + ")");
                 });
+                // generate(function () {
+                //     if (that.attr("is-looping") === 'true')
+                //         loopLabelSelector.text(loopingText + " (" + ++count + ")");
+                // });
             }, 1000);
             enableClick();
         }

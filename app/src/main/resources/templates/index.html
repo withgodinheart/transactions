@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Generate</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--  <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/libs/bootstrap-4.1.3/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/libs/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <!-- Datepicker -->
+    <link rel="stylesheet" href="/libs/bootstrap-datepicker-1.9.0/css/bootstrap-datepicker.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader-box">
+    <!--    <div id="loader-item"><i class="fa fa-spinner fa-spin fa-5x text-success"></i></div>-->
+    <div id="loader-item">
+        <span>Loading...</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="main border rounded p-3 mt-3">
+
+        <ul class="nav nav-pills justify-content-center border rounded p-3" id="pills-tab" role="tablist">
+            <!--nav-fill-->
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-generate-tab" data-toggle="pill" href="#pills-generate" role="tab"
+                   aria-controls="pills-generate" aria-selected="true">Generate</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-analytics-tab" data-toggle="pill" href="#pills-analytics" role="tab"
+                   aria-controls="pills-analytics" aria-selected="true">Analytics</a>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-4" id="pills-tab-content">
+            <div class="tab-pane fade show active" id="pills-generate" role="tabpanel"
+                 aria-labelledby="pills-generate-tab">
+
+                <form id="add-form">
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="beneficiary">Beneficiary</label>
+                        </div>
+                        <select name="beneficiary" class="custom-select" id="beneficiary">
+                            <option value="1" selected>Oleksii Ivanovskii</option>
+                            <option value="2">Mykola Lapinko</option>
+                            <option value="3">Kyrylo Kulach</option>
+                        </select>
+                    </div>
+
+                    <!--                    <div class="form-group input-group">-->
+                    <!--                        <div class="input-group-prepend">-->
+                    <!--                            <span class="input-group-text">Amount range</span>-->
+                    <!--                        </div>-->
+                    <!--                        <input name="amount-from" min="100" max="100000000" type="number" class="form-control"-->
+                    <!--                               value="100">-->
+                    <!--                        <input name="amount-to" min="100" max="100000000" type="number" class="form-control"-->
+                    <!--                               value="100000000">-->
+                    <!--                    </div>-->
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Date range</span>
+                        </div>
+                        <input name="year-from" type="text" class="form-control datepicker" id="year-from" value="2001">
+                        <input name="year-to" type="text" class="form-control datepicker" id="year-to" value="2022">
+                    </div>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="count">Transactions count</label>
+                        </div>
+                        <select name="count" class="custom-select" id="count">
+                            <option value="10">10</option>
+                            <option value="50">50</option>
+                            <option value="100" selected>100</option>
+                            <option value="500">500</option>
+                            <option value="1000">1000</option>
+                            <option value="5000">5000</option>
+                            <option value="10000">10000</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button id="generate-btn" type="button" class="btn btn-outline-success">Generate</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span id="loop-label" class="input-group-text">Loop is off</span>
+                        </div>
+                        <input id="loop" type="button" is-looping="false" class="btn btn-outline-secondary form-control"
+                               value="Start loop">
+                    </div>
+                </form>
+
+            </div>
+            <div class="tab-pane fade" id="pills-analytics" role="tabpanel" aria-labelledby="pills-analytics-tab">
+                <div class="w-100">
+                    <canvas id="canvas-analytics"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--===============================================================================================-->
+<!-- Jquery 3.2.1 -->
+<script src="/libs/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+
+<!-- Jquery Form -->
+<script src="/libs/jquery-form/jquery.form.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="/libs/bootstrap-4.1.3/js/bootstrap.js"></script>
+
+<!-- Chart JS-->
+<script src="/libs/chartjs/chart.js"></script>
+
+<!-- Datepicker -->
+<script src="/libs/bootstrap-datepicker-1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Project JS Functions -->
+<script src="/js/functions.js"></script>
+
+<!-- Project JS Loader -->
+<script src="/js/loader.js"></script>
+<!--===============================================================================================-->
+</body>
+</html>
